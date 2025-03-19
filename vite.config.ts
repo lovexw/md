@@ -8,6 +8,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
+import { VitePluginRadar } from 'vite-plugin-radar'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vitejs.dev/config/
@@ -25,6 +26,11 @@ export default defineConfig({
       overrides: {
         // Since `fs` is not supported in browsers, we can use the `memfs` package to polyfill it.
         // fs: 'memfs',
+      },
+    }),
+    VitePluginRadar({
+      analytics: {
+        id: `G-7NZL3PZ0NK`,
       },
     }),
     process.env.ANALYZE === `true` && visualizer({

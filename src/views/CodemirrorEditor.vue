@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ComponentPublicInstance } from 'vue'
-import { altKey, altSign, ctrlKey, shiftKey, shiftSign } from '@/config'
+import { altKey, altSign, ctrlKey, ctrlSign, shiftKey, shiftSign } from '@/config'
 import { useDisplayStore, useStore } from '@/stores'
 import {
   checkImage,
@@ -21,6 +21,8 @@ const {
   formatContent,
   importMarkdownContent,
   importDefaultContent,
+  copyToClipboard,
+  pasteFromClipboard,
   resetStyleConfirm,
 } = store
 
@@ -396,10 +398,10 @@ onMounted(() => {
                 插入表格
               </ContextMenuItem>
               <ContextMenuItem inset @click="resetStyleConfirm()">
-                恢复默认样式
+                重置样式
               </ContextMenuItem>
               <ContextMenuItem inset @click="importDefaultContent()">
-                导入默认文档
+                重置文档
               </ContextMenuItem>
               <ContextMenuSeparator />
               <ContextMenuItem inset @click="importMarkdownContent()">
@@ -410,6 +412,15 @@ onMounted(() => {
               </ContextMenuItem>
               <ContextMenuItem inset @click="exportEditorContent2HTML()">
                 导出 .html
+              </ContextMenuItem>
+              <ContextMenuSeparator />
+              <ContextMenuItem inset @click="copyToClipboard()">
+                复制
+                <ContextMenuShortcut> {{ ctrlSign }} + C</ContextMenuShortcut>
+              </ContextMenuItem>
+              <ContextMenuItem inset @click="pasteFromClipboard">
+                粘贴
+                <ContextMenuShortcut> {{ ctrlSign }} + V</ContextMenuShortcut>
               </ContextMenuItem>
               <ContextMenuItem inset @click="formatContent()">
                 格式化
